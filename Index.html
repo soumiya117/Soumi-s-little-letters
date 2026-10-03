@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Soumi's Little Letters</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       BASIC RESET
+    ========================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f8eee5;
+      color: #4d493b;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    /* =========================
+       TOP MINI BAR
+    ========================= */
+
+    .top-bar {
+      height: 46px;
+      background: #f3dcd6;
+      border-bottom: 1px solid #e5c7bd;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 6%;
+      font-size: 16px;
+    }
+
+    .top-message {
+      font-family: "Allura", cursive;
+      font-size: 20px;
+      color: #80645b;
+    }
+
+    .top-icons {
+      display: flex;
+      gap: 24px;
+      font-size: 19px;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      position: relative;
+      min-height: 410px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      padding: 55px 20px 45px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(214, 177, 160, 0.12),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 80% 70%,
+          rgba(173, 174, 130, 0.12),
+          transparent 30%
+        ),
+        #fbf3ea;
+    }
+
+
+    /* little decorative flowers */
+
+    .flower {
+      position: absolute;
+      font-size: 28px;
+      opacity: 0.75;
+    }
+
+    .flower.one {
+      top: 55px;
+      left: 8%;
+      transform: rotate(-15deg);
+    }
+
+    .flower.two {
+      top: 75px;
+      right: 9%;
+      transform: rotate(15deg);
+    }
+
+    .flower.three {
+      bottom: 45px;
+      left: 16%;
+      font-size: 22px;
+    }
+
+    .flower.four {
+      bottom: 50px;
+      right: 17%;
+      font-size: 22px;
+    }
+
+
+    /* =========================
+       HERO TITLE
+    ========================= */
+
+    .hero-title {
+      font-family: "Allura", cursive;
+      color: #b87c80;
+
+      font-size: clamp(70px, 11vw, 125px);
+      font-weight: 400;
+
+      line-height: 0.8;
+      max-width: 800px;
+
+      margin-bottom: 30px;
+    }
+
+    .hero-subtitle {
+      font-size: 21px;
+      color: #77745c;
+      max-width: 400px;
+      line-height: 1.4;
+    }
+
+
+    /* little bow underneath title */
+
+    .bow {
+      margin: 4px 0 25px;
+      color: #98966c;
+      font-size: 34px;
+      letter-spacing: 3px;
+    }
+
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    .nav-wrapper {
+      position: relative;
+      background: #9a9c72;
+    }
+
+    .nav {
+      max-width: 1000px;
+      margin: auto;
+
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      padding: 12px 20px;
+      gap: 0;
+    }
+
+    .nav a {
+      color: #fffaf2;
+      font-size: 20px;
+      padding: 4px 27px;
+
+      transition: 0.3s ease;
+    }
+
+    .nav a:hover {
+      color: #f4d8d3;
+      transform: translateY(-2px);
+    }
+
+
+    /* lace-like decorative border */
+
+    .lace {
+      height: 13px;
+
+      background:
+        radial-gradient(
+          circle at 50% 0,
+          transparent 7px,
+          #f8eee5 8px,
+          #f8eee5 10px,
+          transparent 11px
+        );
+
+      background-size: 22px 13px;
+      background-position: center bottom;
+    }
+
+
+    /* =========================
+       MAIN CONTENT
+    ========================= */
+
+    .content {
+      max-width: 1200px;
+      margin: auto;
+
+      padding: 55px 30px;
+
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 35px;
+    }
+
+
+    /* =========================
+       LETTER CARDS
+    ========================= */
+
+    .letters {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .letter-card {
+      position: relative;
+
+      background: rgba(255, 250, 243, 0.8);
+
+      border: 1px solid #e3d5c8;
+      border-radius: 14px;
+
+      padding: 28px;
+
+      box-shadow:
+        0 5px 15px rgba(104, 80, 62, 0.06);
+
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 28px;
+    }
+
+
+    /* paper clip */
+
+    .paperclip {
+      position: absolute;
+      top: -13px;
+      left: 30px;
+
+      width: 15px;
+      height: 42px;
+
+      border: 2px solid #cf9291;
+      border-radius: 10px;
+
+      transform: rotate(-8deg);
+    }
+
+
+    /* image placeholder */
+
+    .letter-image {
+      min-height: 190px;
+
+      border-radius: 5px;
+
+      background:
+        linear-gradient(
+          rgba(191, 156, 136, 0.15),
+          rgba(191, 156, 136, 0.15)
+        ),
+        #d9c7b4;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #7c6b5e;
+      font-size: 17px;
+
+      overflow: hidden;
+    }
+
+
+    .letter-date {
+      color: #8d916b;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .letter-title {
+      font-family: "DM Serif Display", serif;
+      color: #b17a7c;
+
+      font-size: 30px;
+      font-weight: 400;
+
+      line-height: 1.1;
+
+      margin-bottom: 13px;
+    }
+
+    .letter-text {
+      font-size: 18px;
+      max-width: 520px;
+    }
+
+    .read-more {
+      display: inline-block;
+
+      margin-top: 18px;
+
+      padding: 5px 15px;
+
+      background: #f3d6d0;
+      border-radius: 5px;
+
+      color: #80645b;
+      font-size: 17px;
+
+      transition: 0.3s ease;
+    }
+
+    .read-more:hover {
+      background: #e7c0b9;
+    }
+
+
+    /* =========================
+       SIDEBAR
+    ========================= */
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .side-card {
+      position: relative;
+
+      background: rgba(255, 250, 243, 0.85);
+
+      border: 1px solid #e3d5c8;
+      border-radius: 12px;
+
+      padding: 28px 25px;
+
+      box-shadow:
+        0 5px 15px rgba(104, 80, 62, 0.05);
+    }
+
+    .side-title {
+      display: inline-block;
+
+      background: #c4c6a1;
+
+      padding: 5px 22px;
+
+      border-radius: 6px;
+
+      color: #fffaf2;
+
+      font-size: 21px;
+
+      margin-top: -45px;
+      margin-bottom: 18px;
+    }
+
+    .side-card p {
+      font-size: 18px;
+    }
+
+    .currently-list {
+      list-style: none;
+      font-size: 18px;
+    }
+
+    .currently-list li {
+      margin: 5px 0;
+    }
+
+    .currently-list li::before {
+      content: "♡ ";
+      color: #c98b8d;
+    }
+
+
+    /* =========================
+       REMEMBER NOTE
+    ========================= */
+
+    .remember {
+      background: #e8d6c6;
+
+      transform: rotate(2deg);
+
+      padding: 25px;
+
+      font-family: "Allura", cursive;
+      font-size: 25px;
+
+      color: #716454;
+    }
+
+
+    /* =========================
+       PAGINATION
+    ========================= */
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+
+      margin: 35px 0 10px;
+
+      font-size: 18px;
+    }
+
+    .pagination .active {
+      background: #e4b9b6;
+
+      width: 32px;
+      height: 32px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      margin-top: 30px;
+
+      padding: 25px;
+
+      text-align: center;
+
+      background: #9a9c72;
+
+      color: #fffaf2;
+
+      font-size: 17px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 750px) {
+
+      .top-bar {
+        padding: 0 18px;
+      }
+
+      .top-message {
+        font-size: 17px;
+      }
+
+      .top-icons {
+        gap: 12px;
+      }
+
+      .hero {
+        min-height: 350px;
+        padding-top: 45px;
+      }
+
+      .hero-title {
+        font-size: 72px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+      }
+
+      .nav {
+        padding: 10px;
+      }
+
+      .nav a {
+        font-size: 17px;
+        padding: 5px 10px;
+      }
+
+      .content {
+        grid-template-columns: 1fr;
+        padding: 35px 18px;
+      }
+
+      .letter-card {
+        grid-template-columns: 1fr;
+      }
+
+      .letter-image {
+        min-height: 210px;
+      }
+
+      .sidebar {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <!-- TOP BAR -->
+
+  <header class="top-bar">
+
+    <div class="top-message">
+      ♡ words i couldn't say out loud...
+    </div>
+
+    <div class="top-icons">
+      <span>⌕</span>
+      <span>✉</span>
+      <span>✿</span>
+    </div>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="flower one">🌸</div>
+    <div class="flower two">🌷</div>
+    <div class="flower three">✦</div>
+    <div class="flower four">♡</div>
+
+    <h1 class="hero-title">
+      Soumi's<br>
+      Little Letters
+    </h1>
+
+    <div class="bow">
+      ୨୧ ♡ ୨୧
+    </div>
+
+    <p class="hero-subtitle">
+      little letters for the moments<br>
+      i never want to forget
+    </p>
+
+  </section>
+
+
+  <!-- NAVIGATION -->
+
+  <div class="nav-wrapper">
+
+    <nav class="nav">
+
+      <a href="#">home</a>
+      <a href="#">about</a>
+      <a href="#">letters</a>
+      <a href="#">playlist</a>
+      <a href="#">journal</a>
+      <a href="#">contact</a>
+
+    </nav>
+
+    <div class="lace"></div>
+
+  </div>
+
+
+  <!-- MAIN CONTENT -->
+
+  <main class="content">
+
+
+    <!-- LEFT SIDE -->
+
+    <section class="letters">
+
+
+      <!-- LETTER 1 -->
+
+      <article class="letter-card">
+
+        <div class="paperclip"></div>
+
+        <div class="letter-image">
+          a little photograph ♡
+        </div>
+
+        <div>
+
+          <div class="letter-date">
+            october 03, 2026
+          </div>
+
+          <h2 class="letter-title">
+            why i write
+          </h2>
+
+          <p class="letter-text">
+            i've always been better at putting things
+            into words when nobody is waiting for me
+            to say them.
+            <br><br>
+            maybe that's why i write — about the
+            people i love, the tiny moments i want
+            to remember, and all the things that
+            feel too big to say out loud.
+          </p>
+
+          <a class="read-more" href="#">
+            read more →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- LETTER 2 -->
+
+      <article class="letter-card">
+
+        <div class="paperclip"></div>
+
+        <div class="letter-image">
+          flowers & old photographs
+        </div>
+
+        <div>
+
+          <div class="letter-date">
+            september 28, 2026
+          </div>
+
+          <h2 class="letter-title">
+            little things i want
+            <br>
+            to remember
+          </h2>
+
+          <p class="letter-text">
+            there are little moments that don't seem
+            important when they happen.
+            <br><br>
+            but somehow, years later, they're the ones
+            you wish you could visit again.
+          </p>
+
+          <a class="read-more" href="#">
+            read more →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- LETTER 3 -->
+
+      <article class="letter-card">
+
+        <div class="paperclip"></div>
+
+        <div class="letter-image">
+          a quiet morning
+        </div>
+
+        <div>
+
+          <div class="letter-date">
+            september 21, 2026
+          </div>
+
+          <h2 class="letter-title">
+            a letter to the girl
+            <br>
+            i used to be
+          </h2>
+
+          <p class="letter-text">
+            dear me,
+            <br><br>
+            you did the best you could with what
+            you knew. i'm proud of how far you've
+            come.
+          </p>
+
+          <a class="read-more" href="#">
+            read more →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- PAGINATION -->
+
+      <div class="pagination">
+        <span class="active">1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>...</span>
+        <span>7</span>
+        <span>next →</span>
+      </div>
+
+    </section>
+
+
+
+    <!-- RIGHT SIDEBAR -->
+
+    <aside class="sidebar">
+
+
+      <!-- ABOUT -->
+
+      <section class="side-card">
+
+        <div class="side-title">
+          about me ♡
+        </div>
+
+        <p>
+          just a girl who loves writing,
+          romanticizes little moments,
+          and believes there is beauty
+          hiding in ordinary days.
+        </p>
+
+        <div class="bow">
+          ୨୧
+        </div>
+
+      </section>
+
+
+      <!-- CURRENTLY -->
+
+      <section class="side-card">
+
+        <div class="side-title">
+          currently
+        </div>
+
+        <ul class="currently-list">
+
+          <li>listening to: old songs</li>
+          <li>reading: something cozy</li>
+          <li>drinking: iced matcha</li>
+          <li>feeling: inspired</li>
+          <li>loving: slow mornings</li>
+
+        </ul>
+
+      </section>
+
+
+      <!-- PLAYLIST -->
+
+      <section class="side-card">
+
+        <div class="side-title">
+          playlist ♡
+        </div>
+
+        <p>
+          ♫ letters i wrote at midnight
+        </p>
+
+        <p>
+          20 songs · 1 hr 14 min
+        </p>
+
+        <br>
+
+        <div style="text-align:center; font-size:30px;">
+          ◀︎ ◉ ▶︎
+        </div>
+
+      </section>
+
+
+      <!-- LITTLE NOTE -->
+
+      <div class="remember">
+
+        remember:
+        <br>
+        you are allowed to
+        outgrow people,
+        places, and versions
+        of yourself.
+
+      </div>
+
+    </aside>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 soumi's little letters —
+    made with ♡ and too many feelings ✿
+
+  </footer>
+
+
+</body>
+</html>
